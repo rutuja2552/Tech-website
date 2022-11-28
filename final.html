@@ -1,0 +1,649 @@
+<?php
+$host="localhost";
+$user="root";
+$password="";
+$db="demo";
+
+mysql_connect($host,$user,$password);
+mysql_select_db($db);
+
+if(isset($_POST['email'])){
+    $uname=$_POST['email'];
+
+    $sql="select * from registrationform user='".$uname."' limit 1";
+$result=mysql_query($sql);
+if(mysql_num_rows($result)==1){
+    echo "You have successfully registered";
+    exit();
+}
+else{
+    echo"Unable to register";
+}
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Playfair+Display&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        .logo{
+        border: 1px solid whitesmoke;
+        box-shadow: 5px 5px 10px grey ;
+        margin: -6px;
+    }
+    .logo img{
+        width: 20%;  
+    }
+    .quote{
+        font-style: avenier;
+        letter-spacing: 0.4em;
+        text-align: center;
+        line-height: 6.2em;
+        font-family: 'Comfortaa', cursive;
+        font-size: 22px;
+    }
+    .quote2{
+        font-family: 'Libre Baskerville', serif;
+        text-align: center;
+        font-size: 45px;
+        font-family: 'Playfair Display', serif;
+        margin-top: -30px;
+    }
+    .tabel{
+      border: 0.5px solid black;
+      border-spacing: 0px;
+      border-collapse: collapse;
+      text-align: center;
+      padding: 5px;
+      margin-top: 55px;
+      justify-content: center;
+      align-content: center;
+      font-family: 'Ubuntu', sans-serif;
+      letter-spacing: 0.2em;
+    }
+    
+    th:hover{
+        color: grey;
+        cursor: pointer;
+    }
+        .details {
+            margin: 20px 0;
+            background-color: rgb(234, 238, 238);
+            padding: 30px 20px;
+            position: relative;
+            z-index: 1;
+
+        }
+
+        .details h2 {
+            font-size: 22px;
+            text-transform: uppercase;
+            color: black !important;
+            font-family: 'Ubuntu', sans-serif;
+            transition: 0.6s all;
+        }
+
+        .details p {
+            font-size: 14px;
+        }
+
+        .details a {
+            text-decoration: none;
+            text-transform: capitalize;
+            color: azure;
+            background-color: rgb(139, 8, 139);
+            padding: 6px 12px;
+            display: inline-block;
+            font-size: 14px;
+            border: 1px solid purple;
+            transition: 0.6s all;
+        }
+
+        .details ::before {
+            content: "";
+            width: 5px;
+            height: 100%;
+            background-color: #043a4734;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: -1;
+            transition: 0.6s all;
+        }
+
+        .details :hover:before {
+            width: 100%;
+        }
+
+        .details :hover h2 {
+            color: #fff !important;
+        }
+
+        .details :hover a {
+            background-color: transparent;
+            border: 1px solid #fff !important;
+        }
+
+        .content {
+            width: 90%;
+            margin: 30px auto 30px;
+
+        }
+
+        .content .main-content {
+            width: 70%;
+            float: left;
+
+        }
+        .content .main-content .recent-post-title {
+            margin: 20px;
+        }
+        .btn {
+            padding: .5rem 1rem;
+            background: purple;
+            color: white;
+            border: 1px solid transparent;
+            border-radius: .25rem;
+        }
+        .btn:hover {
+            color: white;
+            background: purple;
+        }
+        .content .main-content .post {
+            width: 95%;
+            height: 270px;
+            margin: 10px auto;
+            background: #ffffff;
+            position: relative;
+        }
+        .content .main-content .post .read-more {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            border: 1px solid purple;
+            background: transparent;
+            border-radius: 0px;
+            color: purple !important;
+        }
+        .content .main-content .post .read-more:hover {
+            background: purple;
+            color: white !important;
+            transition: .25s;
+        }
+        .content .main-content .post .post-preview {
+            width: 60%;
+            padding: 10px;
+            float: right;
+        }
+        .post h2 {
+            color: purple;
+            font-size: 22px !important;
+        }
+        :root {
+--white-color: #FAFAFF;
+--dark-color: #101010;
+--dark-color-light: #606060;
+--gray-color: #F0F1F3;
+}
+
+:root {
+--big-font-size: 3rem;
+--h1-font-size: 1.5rem;
+--h2-font-size: 1.25rem;
+--normal-font-size: .938rem;
+--small-font-size: .75rem;
+}
+
+:root {
+--mb-1: 0.5rem;
+--mb-2: 1rem;
+--mb-3: 1.5rem;
+--mb-4: 2rem;
+}
+
+ul {
+margin-top: 20px;
+padding: 0;
+list-style: none;
+text-align: center;
+}
+
+a {
+text-decoration: none;
+color: var(--dark-color);
+padding: 5px 20px;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.section {
+    padding: 3rem 0;
+}
+
+.section-title {
+    font-size: var(--h1-font-size);
+    color: var(--dark-color);
+    margin: var(--mb-3) 0 var(--mb-1);
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.bd-grid {
+    max-width: 2400px;
+    display: grid;
+    grid-template-columns: 100%;
+    column-gap:  2rem;
+    width: calc(100% - 3rem);
+    margin-left: var(--mb-3);
+    margin-right: var(--mb-3);
+}
+
+.flex-item {
+padding: 10px;
+flex: 50%;
+}
+
+.button {
+display: inline-block;
+background-color: #6c298acd;
+color: var(--white-color);
+padding: 1rem;
+font-size: var(--small-font-size);
+font-weight: var(--font-semi);
+transition: .3s;
+width: 150px;
+}
+
+/*===== FORM =====*/
+.form {
+text-align: center;
+}
+
+.forgot {
+    text-align: center;
+    padding-top: 1rem;
+}
+
+.form__description {
+margin-bottom: var(--mb-2);
+font-size: var(--normal-font-size);
+color: var(--dark-color-light);
+}
+
+.form__form {
+    display: flex;
+    justify-content: center;
+}
+
+.form__container {
+    position: relative;
+}
+
+.form__input {
+outline: none;
+border: none;
+background-color: var(--gray-color);
+align-content: center;
+padding: 0 1rem;
+width: 250px;
+height: 50px;
+}
+
+.auth {  
+    display: flex;
+    justify-content: center;
+}
+
+.social__auth {
+    padding: .5rem;
+}
+
+.auth__link {
+    background-color: #6c298acd;
+    height: 50px;
+    line-height: 50px;
+    width: 250px;
+    text-align: center;
+    border:solid var(--white-color);
+    border-radius: 5rem;
+    border-width: 2px;
+}
+
+/*===== FOOTER =====*/
+.footer {
+background-color: var(--dark-color);
+color: var(--white-color);
+}
+
+.footer__container {
+margin-bottom: var(--mb-1);
+display: flex;
+flex-direction: row;
+}
+
+.footer__title {
+margin-bottom: var(--mb-1);
+text-align: center;
+padding-bottom: 10px;
+border-bottom-style: solid;
+border-bottom-width: 3px;
+border-color: #6c298acd;
+}
+
+.footer__link, .footer__social {
+color: var(--dark-color-light);
+}
+
+.footer__link:hover {
+text-decoration: underline;
+}
+
+.footer__social {
+font-size: 1.3rem;
+margin-right: var(--mb-1);
+}
+
+.footer__box {
+padding: 5px;
+flex: 50%;
+}
+
+.bx {
+    font-size: 2rem;
+}
+    </style>
+</head>
+
+<body>
+    <div class="logo">
+        <img src="ic logo.jpg" alt="logo" >
+    </div> 
+    <div class="quote">TECHNOLOGY IS BEST WHEN IT BRINGS PEOPLE TOGETHER </div>
+    <div class="quote2">Sharpen your mind with everyday upadtes on technology</div>
+    <div class="tabel">
+        <table style="width: 100%;">
+            <tr>        
+                <th style="border-right: 0.5px solid black;height: 7px;"><button id="amazon" type="button" style="background-color: white; border: none;"> GADGETS</button></th>
+            <th style="border-right: 0.5px solid black;height: 7px;"><button id="Science" type="button" style="background-color: white; border: none;"> SCIENCE </button></th>
+            <th style="border-right: 0.5px solid black;height: 7px;"> <button id="game" type="button" style="background-color: white; border: none;"> GAMING</button></th>
+            <th ><button id="coding" type="button" style="background-color: white; border: none;">CODING</button></th>
+         </tr>
+        </table>
+    </div>
+    <br><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="details">
+                    <h2>Samsung Galaxy M32 Review: Only for Binge Watchers?</h2>
+                    <img src="https://www.cashify.in/review/samsung-galaxy-m32-5g-review-buy-this-only-for-5g-nothing-else" alt="samsung" width="80%" height="70%" style="padding: 10px;">
+
+                    <a href="f.html">read more</a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="details">
+                    <h2>Battlegrounds Mobile India Officially Released on Android!</h2>
+
+                    <img src="bgmi.jpeg" alt="bgmi" width="75%" height="50%" style="padding: 10px;">
+
+                    <a href="">read more</a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="details">
+                    <h2>Samsung Galaxy Watch 4 Classic Moniker Spotted</h2>
+                    <img src="watch.jpeg" alt="watch" width="80%" height="70%" style="padding: 10px;">
+
+                    <a href="">read more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br><br>
+    <hr>
+    <div class="content clearfix">
+        <div class="main-content">
+            <h1 class="recent-post-title" style="font-family: 'Ubuntu', sans-serif;">Recent</h1>
+            <hr>
+
+            <div class="post">
+                <img src="airtel.jpeg" alt="airtel" width="40%" height="100%" style="float: left;padding: 33px;">
+                <div class="post-preview">
+                    <h2><a>Airtel Black Debuts to Let Users Combine Postpaid, DTH, Fibre Services Under One
+                            Single Bill</a></h2>
+                    &nbsp;
+                    <p class="preview-text">
+                        Airtel Black was launched at a virtual conference on Friday as a new programme by the New
+                        Delhi-based
+                        telecom operator to let its subscribers combine postpaid, direct-to-home (DTH), and fibre
+                        services
+                        under one single bill.
+                    </p>
+                    <a href="" class="btn read-more">Read More </a>
+                </div>
+            </div>
+            <hr>
+            <div class="post">
+                <img src="crypto.jpeg" alt="crypto" width="40%" height="100%" style="float: left;padding: 33px;">
+                <div class="post-preview">
+                    <h2><a>Cryptocurrency Prices in India Today</a></h2>
+                    &nbsp;
+                    <p class="preview-text">
+                        Cryptocurrency remains a volatile market, and prices change very frequently. Even if you look at
+                        just the most well known ’coins’, like Bitcoin, Ether (not to be confused with the Ethereum
+                        network
+                        for which it is the native token), Dogecoin, Litecoin and Ripple, there has been a lot of
+                        movement
+                        in their value.
+                    </p>
+                    <a href="crypto.html" class="btn read-more">Read More </a>
+                </div>
+            </div>
+            <hr>
+            <div class="post">
+                <img src="windows11.jpg" alt="windows" width="40%" height="100%" style="float: left;padding: 33px;">
+                <div class="post-preview">
+                    <h2><a>What Will Windows 11 Bring for Your PC?</a></h2>
+                    &nbsp;
+                    <p class="preview-text">
+                        Windows 11 debuted last week as Microsoft's next-generation operating system. The new Windows
+                        version
+                        brings a revamped interface as well as a list of changes over Windows 10, including a centrally
+                        aligned Start menu and new startup sounds.
+                    </p>
+                    <a href="" class="btn read-more">Read More </a>
+                </div>
+            </div>
+            <hr>
+            <div class="post">
+                <img src="zoom.jpg" alt="zoom" width="40%" height="100%" style="float: left;padding: 33px;">
+                <div class="post-preview">
+                    <h2><a>No Zoom on Friday</a></h2>
+                    &nbsp;
+                    <p class="preview-text">
+                        Citigroup CEO Jane Fraser Lays Out Measures to Ease Work From Home Fatigue
+                        It took a year of the pandemic but finally one of the world's biggest banks has acknowledged the
+                        huge toll that working remotely is taking on its staff.
+                    </p>
+                    <a href="" class="btn read-more">Read More </a>
+                </div>
+            </div>
+            <hr>
+            <div class="post">
+                <img src="youtube.jpeg" alt="youtube" width="40%" height="100%" style="float: left;padding: 33px;">
+                <div class="post-preview">
+                    <h2><a>YouTube Testing Description Redesign for Web With More Focus on Comments: Report</a></h2>
+                    &nbsp;
+                    <p class="preview-text">
+                        YouTube is reportedly testing a redesign of the description section on the Web. The redesign
+                        tries to
+                        put more focus on the comments, video view count, publish date, and video description.
+                    </p>
+                    <a href="" class="btn read-more">Read More </a>
+                </div>
+            </div>
+            <hr>
+            <div class="post">
+                <img src="oppo.jpg" alt="oppo" width="40%" height="100%" style="float: left;padding: 33px;">
+                <div class="post-preview">
+                    <h2><a>Oppo Reno 6 Pro, Oppo Reno 6 India Launch Set for July 14</a></h2>
+                    &nbsp;
+                    <p class="preview-text">
+                        Oppo Reno 6 Pro and Oppo Reno 6 phones are all set to launch in India on July 14. The two phones
+                        had
+                        already been listed on Flipkart, confirming availability as well.
+                    </p>
+                    <a href="" class="btn read-more">Read More </a>
+                </div>
+            </div>
+            <hr>
+            <div class="post">
+                <img src="hacker.jpeg" alt="hacker" width="40%" height="100%" style="float: left;padding: 33px;">
+                <div class="post-preview">
+                    <h2><a>Hackers breached several MPs' email accounts, Poland says;</a></h2>
+                    &nbsp;
+                    <p class="preview-text">
+                        WARSAW, July 2 (Reuters) - The email accounts of about a dozen members of parliament were hacked
+                        recently, Polish counter-intelligence said on Friday, disclosing further details of one of the
+                        biggest cyberattacks on the country in recent years.
+                    </p>
+                    <a href="hacker.html" class="btn read-more">Read More </a>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="sidebar"></div>-->
+    </div>
+        <main class="main-1">
+
+            <section class="form section" id="form">
+                <div class="form__container bd-grid">
+                    <div class="form__subscribe">
+                        <h2 class="section-title">Subscribe</h2>
+                        <p class="form__description">Recieve all updates on posts and authors</p>
+        
+                        <form action="#" class="form__form" method="POST" >
+                            <table>
+                                <tr>
+                                    <td><input type="email" class="form__input" placeholder="Enter your email" name="email"></td>
+                                    <td  class="button"></a> <input type="submit" value="SUBSCRIBE" name="submit" style="background-color: transparent; border: none;"> </td>
+                                </tr>
+                            </table>  
+                        </form>
+
+                        <div class="forgot">
+                            <p>------------------------------ OR ------------------------------</p>
+                        </div>
+                        
+
+                        <div class="auth">
+
+                            <div class="social__auth"> 
+                                <table class="auth__table">
+                                    <tr>
+                                        <td><i class='bx bxl-google'></i></td>
+                                        <td class="auth__link"><a href="#" >Sign in with Google</a></td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td><i class='bx bxl-facebook'></i></td>
+                                        <td class="auth__link"><a href="#" >Sign in with Facebook</a></td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td><i class='bx bxl-pinterest' ></i></td>
+                                        <td class="auth__link"><a href="#">Sign in with Pinterest</a> <br></td>
+                                    </tr>                                                      
+                                </table>
+                            </div>
+                              
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="footer section">
+            
+            <div class="footer__container bd-grid">            
+                <div class="footer__box flex-item">
+                    <h3 class="footer__title">SECTIONS</h3>
+                    <ul>
+                        <li><a href="#home" class="footer__link">Home</a></li>
+                        <li><a href="#about" class="footer__link">About us</a></li>
+                        <li><a href="#branches" class="footer__link">Branches</a></li>
+                        <li><a href="#contact" class="footer__link">Contact us</a></li>
+                        <li><a href="#contact" class="footer__link">Marketing</a></li>    
+                    </ul>
+                </div>
+
+                <div class="footer__box flex-item">
+                    <h3 class="footer__title">EXPLORE</h3>
+                    <ul>
+                        <li><a href="#" class="footer__link">News</a></li>
+                        <li><a href="#" class="footer__link">Support</a></li>
+                        <li><a href="#" class="footer__link">Authors</a></li>
+                        <li><a href="#" class="footer__link">Patreons</a></li>
+                    </ul>
+                </div>
+        
+                <div class="footer__box flex-item">
+                    <h3 class="footer__title">COMMUNITY</h3>
+                    <ul>
+                        <li><a href="#" class="footer__link">Support</a></li>
+                        <li><a href="#" class="footer__link">Forums</a></li>
+                        <li><a href="#" class="footer__link">Developers</a></li>
+                    </ul>
+                </div>
+        
+                <div class="footer__box flex-item">
+                    <h3 class="footer__title">FOLLOW US</h3>
+                    <ul>
+                        <a href="https://www.facebook.com/" class="footer__social"><i class='bx bxl-facebook'></i></a>
+                        <a href="https://www.instagram.com/" class="footer__social"><i class='bx bxl-instagram' ></i></a>
+                        <a href="https://twitter.com/" class="footer__social"><i class='bx bxl-twitter' ></i></a>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+<script>
+   document.getElementById("amazon").onclick = function(){
+       location.href="https://www.amazon.in/s?k=gadgets&crid=2QCH2STV6OL8W&sprefix=gadget%2Caps%2C346&ref=nb_sb_ss_ts-doa-p_1_6";
+   };
+</script>
+<script>
+    document.getElementById("Science").onclick = function(){
+        location.href="https://www.lastwordonnothing.com/";
+    };
+ </script>
+ <script>
+     document.getElementById("game").onclick = function(){
+        location.href="https://www.ea.com/sports";
+    };
+ </script>
+ <script>
+     document.getElementById("coding").onclick = function(){
+        location.href="https://www.w3schools.com/";
+    };
+ </script>
+    
+</body>
+</html>
